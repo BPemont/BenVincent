@@ -6,3 +6,5 @@ Il est aussi possible de commenté les films et de les ajouter en commentaires.
 
 Le lien pour accéder au swagger est le suivant : http://localhost:3000/swagger  
 On accède alors aux lien des différents Endpoint (ex : api/title/{title}, il faut ensuite faire Try Out pour tester les requêtes en entrant des paramètres.  
+
+Les endpoint se situent dans /pages/api/(nomduendpoint)/{nomduendpoint}
