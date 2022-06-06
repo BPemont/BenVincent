@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 
 /**
 * @swagger
-* /api/comments/{comments}:
+* /api/movies/comments/addComment:
 *   post:
 *       requestBody:
 *           description: Endpoint for adding an comment from a user on a specific movie.
@@ -13,12 +13,20 @@ import { ObjectId } from "mongodb";
 *                       type: object
 *                       required:
 *                           - idUser
+*                           - nameUser
+*                           - emailUser
 *                           - idMovie
 *                           - comment
 *                       properties:
 *                           idUser:
 *                               type: string
 *                               description: user identity
+*                           nameUser:
+*                               type: string
+*                               description: user name
+*                           emailUser:
+*                               type: string
+*                               description: user mail
 *                           idMovie:
 *                               type: string
 *                               description: movie identity
@@ -27,21 +35,20 @@ import { ObjectId } from "mongodb";
 *                               description: comment to post
 *   responses:
 *       200:
-*           description: Votre film à bien été commenté
+*           description: Success Response
 *       400:
-*           description: Le film n'a pas pu être commenté
+*           description: Error Response
 */
 
 export default async function handler2(req, res) {
-    const bodyParams = req.body;
+   const bodyParams = req.body;
    const client = await clientPromise;
    const db = client.db("sample_mflix");
    await db.collection("comments").insert(
     [
-      {  movie_id: ObjectId(bodyParams.idMovie), users_id: ObjectId(bodyParams.idUser), comment: ObjectId(insert) }
+      {  name: bodyParams.nameUser, email: bodyParams.emailUser, movie_id: ObjectId(bodyParams.idMovie), text: bodyParams.comment,date: Date()}
     ],
     { ordered: false }
 )
 res.json({ status: 200, data: "OK" });
 }
-
